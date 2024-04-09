@@ -1,0 +1,59 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model List<Student>
+
+<div class="container">
+    <div class="row pt-4 pb-3">
+        <div class="col-6">
+          <h2 class="text-primary"> Student List </h2>
+        </div>
+        
+        <div class="col-6 text-end">
+            <a asp-controller="Student" asp-action="Add" class="btn btn-primary">
+              Add a new student
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+   <div class="row pt-4 pb-3">
+
+     <div class="col-md-6">
+        <form class="d-flex" asp-action="List" asp-controller="student">
+            <input name="SearchString" class="form-control me-1" type="search" placeholder="search" aria-label="search" />
+            <button class="btn btn-dark" type="submit">search by name</button>
+        </form>
+     </div>
+
+     <div class="col-md-6">
+        <a asp-action="List" class="text-primary">back to the full list</a>
+     </div>
+
+   </div>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Email</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach(var item in Model)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.Name</td>
+                <td>@item.Email</td>
+                <td>
+                    <a class="btn btn-primary" asp-controller="Student" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
